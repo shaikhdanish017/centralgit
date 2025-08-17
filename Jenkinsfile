@@ -4,13 +4,16 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git branch: 'main', url: 'https://github.com/your-user/your-repo.git'
+                git branch: 'main',
+                    url: 'https://github.com/shaikhdanish017/centralgit.git',
+                    credentialsId: 'github-creds'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t myapp:latest .'
+                sh "docker build -t myapp:${env.BUILD_NUMBER} ."
+                sh "docker tag myapp:${env.BUILD_NUMBER} myapp:latest"
             }
         }
 
@@ -19,7 +22,7 @@ pipeline {
                 sh '''
                 docker stop myapp || true
                 docker rm myapp || true
-                docker run -d --name myapp -p 8080:8080 myapp:latest
+                docker run -d --name myapp -p 5000:5000 myapp:latest
                 '''
             }
         }
