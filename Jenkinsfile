@@ -3,11 +3,11 @@ pipeline {
 
     stages {
         stage('Clone Repo') {
-            steps {
-                git branch: 'main',
-                    url: 'https://github.com/shaikhdanish017/centralgit.git',
-                    credentialsId: 'github-creds'
-            }
+    steps {
+        git branch: 'master',
+            url: 'https://github.com/shaikhdanish017/centralgit.git',
+            credentialsId: 'github-creds'
+           }
         }
 
         stage('Build Docker Image') {
