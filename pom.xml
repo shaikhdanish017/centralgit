@@ -6,7 +6,7 @@
     <groupId>com.example</groupId>
     <artifactId>centralgit</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>  <!-- 👈 CHANGED from jar to war -->
+    <packaging>war</packaging> <!-- WAR packaging -->
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -28,7 +28,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Servlet API required for WAR projects -->
+        <!-- Servlet API for WAR -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -38,7 +38,7 @@
     </dependencies>
 
     <build>
-        <finalName>centralgit</finalName> <!-- 👈 WAR name will be centralgit.war -->
+        <finalName>centralgit</finalName> <!-- WAR file will be centralgit.war -->
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -48,15 +48,13 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+            </plugin>
+        </plugins>
     </build>
 </project>
-<build>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-war-plugin</artifactId>
-            <version>3.3.2</version>
-        </plugin>
-    </plugins>
-</build>
-
